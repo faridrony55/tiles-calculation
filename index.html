@@ -1,0 +1,107 @@
+
+<form class="calculator-container" id="ceramic-tile">
+	<div class="calculator-heading row">
+		<h3 class="col fourcol">Area</h3>
+		<h3 class="col eightcol">Measurements</h3>
+	</div>
+	<div class="calculator-body">
+		<div class="row">
+			<div class="col fourcol">
+				Area (in ft.)
+			</div>
+			<div class="col eightcol">
+				<input name="area11" type="text" placeholder="Length" id="length">
+				<span class='x'>x</span>
+				<input name="area12" type="text" placeholder="Width" id="width">
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col fourcol">
+				Tile size (in in.)
+			</div>
+			<!-- <div class="col eightcol">
+				<input name="area13" type="text" placeholder="Length" id="tlength">
+				<span class='x'>x</span>
+				<input name="area14" type="text" placeholder="Width" id ="twidth">
+			</div> -->
+			<div class="col eightcol">
+				<select id="grout" name="grout" onchange="updateForm(this.value);return false;">
+	               <option value="" selected="selected">0</option>
+	               <option value="5x5">5" x 5"</option>
+	               <option value="2.5x8">2.5" x 8"</option>
+	               <option value="3x12">3" x 12"</option>  
+	               <option value="12x24">12" x 24"</option>
+	               <option value="13x13">13" x 13"</option> 
+	               <option value="13x40">13" x 40"</option> 
+	               <option value="24x24">24" x 24"</option> 
+	               <option value="24x48">24" x 48"</option> 
+	            </select>
+			</div>
+		</div>
+
+		<!-- <div class="row">
+			<div class="col fourcol">
+				Grout size (in in.)
+			</div>
+			<div class="col eightcol">
+				<select id="grout" name="grout" onchange="updateForm(this.value);return false;">
+	               <option value="" selected="selected">0</option>
+	               <option value=".125">1/8 inch</option>
+	               <option value=".1875">3/16 inch</option>
+	               <option value=".25">1/4 inch</option>
+	            </select>
+			</div>
+		</div> -->
+
+		<a href="#" class="t-button-standard t-upper" onclick="calculate();return false;">Calculate</a>
+	</div>
+</form>
+
+<div class="calculator-footer">
+	<div class="calculator-footer-row">
+		<div class="row">
+			<div class="col eightcol">
+				Total Tile Area:
+			</div>
+			<div class="col fourcol answer">
+				<span id="sqft"></span> Sq Ft
+			</div>
+		</div>
+
+		<hr>
+
+		<div class="row">
+			<div class="col eightcol">
+				Total Tiles Needed*:
+			</div>
+			<div class="col fourcol answer">
+				<span id="sqYrds"></span> Pieces
+			</div>
+		</div>
+	</div>
+</div>
+<small>*Includes standard 10% waste.</small>
+<script type="text/javascript">
+	var form = document.getElementById("ceramic-tile");
+
+	var calculate = function() {
+		var sqft = (document.getElementById("length").value * document.getElementById("width").value);
+
+		// var grout = document.getElementById("grout").value;
+		// var tileLength = document.getElementById("tlength").value + document.getElementById("grout").value;
+		// var tileWidth = document.getElementById("twidth").value + document.getElementById("grout").value;
+		// var tileLength = document.getElementById("tlength").value ;
+		// var tileWidth = document.getElementById("twidth").value ;
+
+		var grout = document.getElementById("grout").value;
+		var fields = grout.split('x'); 
+		var tileLength = fields[0];
+		var tileWidth = fields[1];
+
+		var tilesNeeded =  Math.ceil((sqft * 144) / (tileLength * tileWidth) * 1.1);
+
+		document.getElementById("sqft").innerHTML = sqft;
+		document.getElementById("sqYrds").innerHTML = tilesNeeded;
+	}
+</script>
