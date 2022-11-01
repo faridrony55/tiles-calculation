@@ -1,4 +1,7 @@
 
+ {% if product.tags contains 'tile' or product.tags contains 'Tile' or product.tags contains 'lvt' %}
+ 
+
 <form class="calculator-container" id="ceramic-tile">
 	<div class="calculator-heading row">
 		<h3 class="col fourcol">Area</h3>
@@ -19,12 +22,7 @@
 		<div class="row">
 			<div class="col fourcol">
 				Tile size (in in.)
-			</div>
-			<!-- <div class="col eightcol">
-				<input name="area13" type="text" placeholder="Length" id="tlength">
-				<span class='x'>x</span>
-				<input name="area14" type="text" placeholder="Width" id ="twidth">
-			</div> -->
+			</div> 
 			<div class="col eightcol">
 				<select id="grout" name="grout" onchange="updateForm(this.value);return false;">
 	               <option value="" selected="selected">0</option>
@@ -38,23 +36,17 @@
 	               <option value="24x48">24" x 48"</option> 
 	            </select>
 			</div>
-		</div>
+		</div> 
 
-		<!-- <div class="row">
-			<div class="col fourcol">
-				Grout size (in in.)
+		
+      
+		<div class="row">
+			<div class="col fourcol"> 
 			</div>
 			<div class="col eightcol">
-				<select id="grout" name="grout" onchange="updateForm(this.value);return false;">
-	               <option value="" selected="selected">0</option>
-	               <option value=".125">1/8 inch</option>
-	               <option value=".1875">3/16 inch</option>
-	               <option value=".25">1/4 inch</option>
-	            </select>
+				<a href="#" class="t-button-standard t-upper" onclick="calculate();return false;">Calculate</a>
 			</div>
-		</div> -->
-
-		<a href="#" class="t-button-standard t-upper" onclick="calculate();return false;">Calculate</a>
+		</div>
 	</div>
 </form>
 
@@ -86,22 +78,88 @@
 	var form = document.getElementById("ceramic-tile");
 
 	var calculate = function() {
-		var sqft = (document.getElementById("length").value * document.getElementById("width").value);
-
-		// var grout = document.getElementById("grout").value;
-		// var tileLength = document.getElementById("tlength").value + document.getElementById("grout").value;
-		// var tileWidth = document.getElementById("twidth").value + document.getElementById("grout").value;
-		// var tileLength = document.getElementById("tlength").value ;
-		// var tileWidth = document.getElementById("twidth").value ;
-
+		var sqft = (document.getElementById("length").value * document.getElementById("width").value); 
 		var grout = document.getElementById("grout").value;
 		var fields = grout.split('x'); 
 		var tileLength = fields[0];
-		var tileWidth = fields[1];
-
-		var tilesNeeded =  Math.ceil((sqft * 144) / (tileLength * tileWidth) * 1.1);
-
+		var tileWidth = fields[1]; 
+		var tilesNeeded =  Math.ceil((sqft * 144) / (tileLength * tileWidth) * 1.1); 
 		document.getElementById("sqft").innerHTML = sqft;
 		document.getElementById("sqYrds").innerHTML = tilesNeeded;
 	}
 </script>
+
+  <style>
+    .calculator-container {
+    background: #FFF;
+    border-color: #CCC;
+    padding: 0;
+}
+    .calculator-container {
+    background: #f8f9fb;
+    border: 1px solid #cfcfd1;
+    border-radius: 2px 2px 0 0; 
+}
+.calculator-heading  {
+    background: rgba(63, 110, 237, 0.05);
+    border-color: #CCC;
+    margin: 0!important;
+    text-transform: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+ .calculator-footer {
+    background: rgba(63, 110, 237, 0.05);
+    border-color: #CCC;
+    margin: 0!important;
+    text-transform: none;
+    padding: 0; 
+}
+    .calculator-container .col, .calculator-footer .col {
+    padding: 10px 12px;
+    line-height: 30px;
+    color: #070441;
+    margin-bottom: 0;
+}
+.calculator-container .fourcol {
+    border-right: 1px solid #CCC;
+    flex-basis: 25%;
+}
+  .calculator-body{}
+    .calculator-body .row, .calculator-footer-row .row{
+      
+    display: flex;
+    flex-wrap: wrap;
+    }
+    .t-button-standard{
+      
+    background: #2aa98d;
+    color: #fff;
+    font-weight: 700;
+    padding: 10px 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 1px;
+    }
+    .calculator-footer-row .col.eightcol {
+    width: 75%;
+    font-size: 20px;
+    font-weight: 700;
+}
+    .calculator-footer-row .col.fourcol{
+          width:25%;
+    font-size: 20px;
+    font-weight: 700;
+    }
+ .calculator-footer-row .col.fourcol span { 
+    text-transform: capitalize;
+    font-size: 20px;
+    font-weight: 700;
+}
+  </style>
+{% endif %}
+
+
+
+source: https://www.homeadvisor.com/r/ceramic-tile-calculator/
